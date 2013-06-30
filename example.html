@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.3.1.min.js"></script>
+<script src="jquery-bigtext.js"></script>
+<style>
+    div.test-div {
+        background: #0000BE;
+        margin-bottom: 50px;
+    }
+    
+    span.test-span {
+        font-family: Arial, Verdana, sans-serif;
+        color: #fff;
+        text-shadow: 
+        0 0.02em 0 #EEE, 
+        0 0.05em 0 #DDD, 
+        0.02em 0.04em 0.1em rgba(0, 0, 0, 0.3),
+        0.02em 0.05em 0.03em rgba(0, 0, 0, 0.3);
+    }
+    
+    div#complex div {
+        position: relative;
+        float: left;
+        margin: 0;
+        padding: 0;
+    }
+    
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("span#span1").bigText();
+    
+    $("span#span2").bigText();
+    
+    $("span#span3").bigText({
+        fontSizeFactor: 1
+    });
+    
+    $("span#span4").bigText({
+        padding: 30
+    });
+    
+    $("span#span5").bigText({
+        padding: 30
+    });
+    
+    $("span#span6").bigText({
+        rotateText: 90
+    });
+    
+    $("span#span7").bigText({
+        rotateText: -90
+    });
+    
+    $("span#span8").bigText({
+        rotateText: 45,
+        padding: 30
+    });
+    
+    $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
+    $("span#complex_span4").bigText({
+        rotateText: -45
+    });
+});
+</script>
+</head>
+<body>
+
+
+
+    <h2>Example1</h2>
+    div size: width: 300px; height: 200px; <br />
+    Simple example. Makes the text as big as possible without overflowing the parent div.
+    <pre>
+        $("span#span1").bigText();
+    </pre>
+    <div class="test-div" style="
+        width: 300px;
+        height: 200px;
+    ">
+        <span id="span1" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    <h2>Example2</h2>
+    div size: width: 800px; height: 100px; <br />
+    Same as Example1 but with a different size div. Notice that jquery=bigtext checks both heights and widths to prevent overflowing.
+    <pre>
+        $("span#span2").bigText();
+    </pre>
+    <div class="test-div" style="
+        width: 800px;
+        height: 100px;
+    ">
+        <span id="span2" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    <h2>Example3</h2>
+    div size: width: 800px; height: 100px; <br />
+    Same as Example2 but with fontSizeFactor set to 1. fontSizeFactor default is 0.8, it's used to give some vertical spacing for letters that overflow the line-height (like 'g', 'Á' and most other accentuated uppercase letters). This does not affect the font-size if the limiting factor is the width of the parent div.
+    <pre>
+        $("span#span2").bigText({
+            fontSizeFactor: 1
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 800px;
+        height: 100px;
+    ">
+        <span id="span3" class="test-span">Testing BigText</span>
+    </div>
+
+
+
+    
+    <h2>Example4</h2>
+    div size: width: 300px; height: 200px; <br />
+    Add some padding to the parent div. You can also set this directly on the CSS of the parent div.
+    <pre>
+        $("span#span4").bigText({
+            padding: 30
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 300px;
+        height: 200px;
+    ">
+        <span id="span4" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    <h2>Example5</h2>
+    div size: width: 500px; height: 100px; <br />
+    Add some padding to the parent div. But on this case the font size is limited vertically.
+    <pre>
+        $("span#span5").bigText({
+            padding: 30
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 700px;
+        height: 100px;
+    ">
+        <span id="span5" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    
+    <h2>Example6</h2>
+    div size: width: 100px; height: 300px; <br />
+    BigText on rotated text? yes please! <br />
+    Note: BigText, unlike padding, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
+    <pre>
+        $("span#span3").bigText({
+            rotateText: 90
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 100px;
+        height: 300px;
+    ">
+        <span id="span6" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    
+    <h2>Example7</h2>
+    div size: width: 100px; height: 300px; <br />
+    More rotated examples.
+    <pre>
+        $("span#span3").bigText({
+            rotateText: -90
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 100px;
+        height: 300px;
+    ">
+        <span id="span7" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    
+    <h2>Example8</h2>
+    div size: width: 300px; height: 300px; <br />
+    More rotated examples.
+    <pre>
+        $("span#span3").bigText({
+            rotateText: 45
+            padding: 30
+        });
+    </pre>
+    <div class="test-div" style="
+        width: 300px;
+        height: 300px;
+    ">
+        <span id="span8" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    
+    <h2>Example10</h2>
+    A more complex arrangement
+    <pre>
+        $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
+        $("span#complex_span4").bigText({
+            rotateText: -45
+        });
+    </pre>
+    <div id="complex" style="height: 450px; width: 300px;">
+        <div style="
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+        ">
+            <span id="complex_span1" class="test-span">Big</span>
+        </div>
+        <div style="
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            clear: right;
+        ">
+            <span id="complex_span2" class="test-span">Text</span>
+        </div>
+        <div style="
+            background-color: green;
+            width: 100px;
+            height: 100px;
+            clear: right;
+        ">
+            <span id="complex_span3" class="test-span">Is</span>
+        </div>
+        <div style="
+            background-color: yellow;
+            width: 300px;
+            height: 300px;
+        ">
+            <span id="complex_span4" class="test-span">awesome</span>
+        </div>
+    </div>
+</body>
+</html>
