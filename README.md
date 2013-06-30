@@ -55,6 +55,6 @@ fontSizeFactor: default is 0.8, it's used to give some vertical spacing for lett
 
 rotateText: Rotates the text inside the element by X degrees.
 
-Note: BigText, unlike padding, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
+Note: BigText, unlike padding, does not support setting the rotation of the text element on CSS. You must set it through the $.bigText() options.
 
 
