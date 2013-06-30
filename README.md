@@ -1,6 +1,6 @@
 jquery-bigtext
 ==============
-jQuery plugin that makes text inside as big as possible while still fitting on the parent.
+jQuery plugin that makes HTML text tags as big as possible while still fitting on the parent.
 
 Requirements
 ==============
@@ -19,10 +19,28 @@ Google Chrome
 Safari
 
 
+Examples
+==============
+
+```html
+<div style="width: 300px, height: 200px">
+  <span id="span">BigText</span>
+</div>
+```
+```javascript
+$("#span").bigText();
+```
+
+With one simple line the text "BigText" will now have its font-size increased but without overflowing the div.
+
+See more examples in https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/example.html
+
+
 Usage
 ==============
+
 ```javascript
-$("#div").bigText({
+$("#span").bigText({
   padding: {Number},
   rotateText: {Number},
   fontSizeFactor: {Number}
@@ -40,6 +58,3 @@ rotateText: Rotates the text inside the element by X degrees.
 Note: BigText, unlike padding, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
 
 
-Examples
-==============
-See https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/example.html
