@@ -3,6 +3,8 @@
 <head>
 <script src="https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/jquery-1.10.1.min.js"></script>
 <script src="https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/jquery-bigtext.js"></script>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery-bigtext.js"></script> -->
 <style>
     div.test-div {
         background: #0000BE;
@@ -57,17 +59,28 @@ $(document).ready(function() {
         rotateText: 45,
         padding: 30
     });
+	
+    $("span#span9").bigText({
+        maximumFontSize: 25
+    });
+	
+	$("span#span10").bigText({
+		limitingDimension: "width"
+	});
+	
+	$("span#span11").bigText({
+		limitingDimension: "height"
+	});
     
     $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
     $("span#complex_span4").bigText({
         rotateText: -45
     });
+    
 });
 </script>
 </head>
 <body>
-
-
 
     <h2>Example1</h2>
     div size: width: 300px; height: 200px; <br />
@@ -87,7 +100,7 @@ $(document).ready(function() {
     
     <h2>Example2</h2>
     div size: width: 800px; height: 100px; <br />
-    Same as Example1 but with a different size div. Notice that jquery=bigtext checks both heights and widths to prevent overflowing.
+    Same as Example1 but with a different size div. Notice that jquery-bigtext checks both heights and widths to prevent overflowing.
     <pre>
         $("span#span2").bigText();
     </pre>
@@ -218,7 +231,60 @@ $(document).ready(function() {
     
     
     
+    <h2>Example9</h2>
+    div size: width: 600px; height: 300px; <br />
+    Maximum font size option
+    <pre>
+		$("span#span9").bigText({
+			maximumFontSize: 25,
+		});
+    </pre>
+    <div class="test-div" style="
+        width: 600px;
+        height: 300px;
+    ">
+        <span id="span9" class="test-span">Testing BigText</span>
+    </div>
+    
+
     <h2>Example10</h2>
+    div size: width: 600px; height: auto; <br />
+    Limits the font size based only on the parent element width instead of both width and height.
+    <pre>
+		$("span#span9").bigText({
+			limitingDimension: "width",
+		});
+    </pre>
+    <div class="test-div" style="
+        width: 600px;
+        height: auto;
+    ">
+        <span id="span10" class="test-span">Testing BigText</span>
+    </div>
+    
+	
+	
+    <h2>Example11</h2>
+    div size: width: auto; height: 200; <br />
+    Limits the font size based only on the parent element height instead of both width and height.
+    <pre>
+		$("span#span9").bigText({
+			limitingDimension: "height",
+		});
+    </pre>
+    <div class="test-div" style="
+        width: auto;
+        height: 200px;
+    ">
+        <span id="span11" class="test-span">Testing BigText</span>
+    </div>
+    
+    
+    
+    
+    
+    
+    <h2>Final Example</h2>
     A more complex arrangement
     <pre>
         $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
