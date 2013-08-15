@@ -60,11 +60,11 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
 			
             if (options.padding !== null) {
                 if (typeof options.padding === "number") {
-                    options.padding = options.padding + "px";
+                    options.padding = options.padding;
                 } else {
                     throw "bigText error: Padding value must be a number";
                 }
-                $this.parent().css("padding", options.padding);
+                $this.parent().css("padding", options.padding + "px");
             }
 			
 			
