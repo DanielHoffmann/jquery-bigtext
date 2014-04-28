@@ -1,13 +1,17 @@
 /*
-jQuery BigText v1.1.0, 12 Jul 2013.
+jQuery BigText v1.2.0, 12 Jul 2013.
 
 Usage: 
 $("#div").bigText({
     padding: {Number},
     rotateText: {Number},
     fontSizeFactor: {Number},
-	maximumFontSize: {Number},
-	limitingDimension: {String}
+    maximumFontSize: {Number},
+    minimumFontSize: {Number}
+    limitingDimension: {String},
+    center: {Boolean}, (TRUE)
+    vCenter: {Boolean}, (TRUE)
+    wrapAfterMin: {Boolean} (FALSE)
 });
 
 https://github.com/DanielHoffmann/jquery-bigtext
@@ -17,7 +21,11 @@ padding: Add X pixels of padding to the parent element. You can also set this di
 rotateText: Rotates the text inside the element by X degrees. Note: BigText, unlike padding on the parent element, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
 fontSizeFactor: default is 0.8, it's used to give some vertical spacing for letters that overflow the line-height (like 'g', 'Á' and most other accentuated uppercase letters). This does not affect the font-size if the limiting factor is the width of the parent div. 
 maximumFontSize: maximum font size to use.
+minimumFontSize: The minimum font size to shrink down to.
 limitingDimension: in which dimension the font size should be limited. Possible values: "width", "height" or "both". Defaults to both. Using this option overwrites the element parent width or height.
+center: Centers the big text.
+vCenter: Vertically centers the big text.
+wrapAfterMin: Allows you to wrap big text once it crosses the mininumFontSize threshold.
 
 
 Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
@@ -36,8 +44,12 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
         rotateText: null,
         padding: null,
         fontSizeFactor: 0.8,
-		maximumFontSize: null,
-        limitingDimension: "both"
+        maximumFontSize: null,
+        minimumFontSize: null,
+        limitingDimension: "both",
+        center: true,
+        vCenter: true,
+        wrapAfterMin: false
     }
     
     $.fn.bigText = function(options) {
@@ -51,13 +63,17 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
             $this.css('line-height', "1000px");
             $this.css('position', "relative");
             $this.css('white-space', "nowrap");
-            $this.css('top', "50%");
-            $this.css('left', "50%");
+            if (options.vCenter) {
+                $this.css('top', "50%");
+            }
+            if (options.center) {
+               $this.css('left', "50%"); 
+            }
             $this.css('padding', 0);
             $this.css('margin', 0);
             
-			$this.parent().css("overflow", "hidden");
-			
+            // $this.parent().css("overflow", "hidden");
+            
             if (options.padding !== null) {
                 if (typeof options.padding === "number") {
                     options.padding = options.padding;
@@ -66,8 +82,7 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
                 }
                 $this.parent().css("padding", options.padding + "px");
             }
-			
-			
+            
             var box = {};
             if (options.rotateText !== null) {
                 if (typeof options.rotateText !== "number") {
@@ -98,36 +113,49 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Icaro Technologies
                 right: parseInt($this.css('padding-right')),
                 bottom: parseInt($this.css('padding-bottom'))
             };
-            var foo = ($this.parent().innerWidth() - padding.left - padding.right) / box.width;
-            var bar = ($this.parent().innerHeight() - padding.top - padding.bottom) / box.height;
+            var widthFactor = ($this.parent().innerWidth() - padding.left - padding.right) / box.width;
+            var heightFactor = ($this.parent().innerHeight() - padding.top - padding.bottom) / box.height;
             var lineHeight;
-			
-			if (options.limitingDimension.toLowerCase() === "width") {
-                lineHeight = Math.floor(foo * 1000);
-				$this.parent().height(lineHeight);
-			} else if (options.limitingDimension.toLowerCase() === "height") {
-                lineHeight = Math.floor(bar * 1000);
-			} else if (foo < bar) {
-                lineHeight = Math.floor(foo * 1000);		
-			} else if (foo >= bar) {
-                lineHeight = Math.floor(bar * 1000);
-			}
-			
-			var fontSize= lineHeight * options.fontSizeFactor;
-			if (options.maximumFontSize !== null && fontSize > options.maximumFontSize) {
-				fontSize= options.maximumFontSize;
-				lineHeight= fontSize / options.fontSizeFactor;
-			}
+            
+            if (options.limitingDimension.toLowerCase() === "width") {
+                lineHeight = Math.floor(widthFactor * 1000);
+                $this.parent().height(lineHeight);
+            } else if (options.limitingDimension.toLowerCase() === "height") {
+                lineHeight = Math.floor(heightFactor * 1000);
+            } else if (widthFactor < heightFactor) {
+                lineHeight = Math.floor(widthFactor * 1000);        
+            } else if (widthFactor >= heightFactor) {
+                lineHeight = Math.floor(heightFactor * 1000);
+            }
+            
+            var fontSize= lineHeight * options.fontSizeFactor;
+            if (options.maximumFontSize !== null && fontSize > options.maximumFontSize) {
+                fontSize= options.maximumFontSize;
+                lineHeight= fontSize / options.fontSizeFactor;
+            }
+            if (options.minimumFontSize !== null && fontSize < options.minimumFontSize) {
+                fontSize= options.minimumFontSize;
+                lineHeight= fontSize / options.fontSizeFactor;
+            }
+
             $this.css('font-size', fontSize  + "px");
             $this.css('line-height', lineHeight  + "px");
             //centralizing text, top and left are defined as 50% on the CSS
-            $this.css('margin-left', (-$this.width() / 2) + "px");
-            $this.css('margin-top', (-$this.height() / 2) + "px");
+            if (options.center) {
+               $this.css('margin-left', (-$this.width() / 2) + "px"); 
+            }
+            if (options.vcenter) {
+                $this.css('margin-top', (-$this.height() / 2) + "px");
+            }
             $this.css('margin-right', 0);
             $this.css('margin-bottom', 0);
-			if (options.limitingDimension.toLowerCase() === "height") {
-				$this.parent().width($this.width());
-			}
+            if (options.limitingDimension.toLowerCase() === "height") {
+                $this.parent().width($this.width());
+            }
+            if (options.wrapAfterMin) {
+                $this.css('white-space', "normal");
+            }
+            
         });
     } 
 })(jQuery);
