@@ -43,22 +43,34 @@ Usage
 $("#div").bigText({
     padding: {Number},
     rotateText: {Number},
-    fontSizeFactor: {Number},
-	maximumFontSize: {Number},
-	limitingDimension: {String}
+    fontSizeFactor: {Number}, (0.8)
+    maximumFontSize: {Number},
+    minimumFontSize: {Number},
+    limitingDimension: {String}, ("both")
+    center: {Boolean}, (true)
+    centerVertically: {Boolean}, (true)
+    wrapAfterMin: {Boolean} (false)
 });
 ```
 
 Options
 ==============
-padding: Add X pixels of padding to the parent element. You can also set this directly on the CSS of the parent element. 
+padding: Add X pixels of padding to the parent element. The plugin understands padding added through CSS, this is only a convenience feature
 
-rotateText: Rotates the text inside the element by X degrees. Note: BigText, unlike padding on the parent element, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
+rotateText: Rotates the text inside the element by X degrees. Note: The plugin, unlike padding on the parent element, does not support setting the rotation of the text element in CSS. You must set it through the $.bigText() options.
 
 fontSizeFactor: default is 0.8, it's used to give some vertical spacing for letters that overflow the line-height (like 'g', 'Á' and most other accentuated uppercase letters). This does not affect the font-size if the limiting factor is the width of the parent div. 
 
 maximumFontSize: maximum font size to use.
 
+minimumFontSize: minimum font size to use.
+
 limitingDimension: in which dimension the font size should be limited. Possible values: "width", "height" or "both". Defaults to both. Using this option overwrites the element parent width or height.
+
+center: Centers the text horizontally. Defaults to true.
+
+centerVertically: Centers the text vectically. Defaults to true.
+
+wrapAfterMin: Allows wrapping of the text once the minimumFontSize is reached.
 
 
