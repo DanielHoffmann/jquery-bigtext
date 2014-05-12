@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head> <!--
-<script src="https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/jquery-1.10.1.min.js"></script>
-<script src="https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/jquery-bigtext.js"></script>-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="jquery-bigtext.js"></script> 
+<head>
+<script src="https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/jquery-bigtext.js"></script>
+<!--<script src="../jquery-bigtext.js"></script> -->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <style>
     div.test-div {
         background: #0000BE;
@@ -15,10 +15,10 @@
         font-family: Arial, Verdana, sans-serif;
         color: #fff;
         text-shadow: 
-        0 0.02em 0 #EEE, 
-        0 0.05em 0 #DDD, 
-        0.02em 0.04em 0.1em rgba(0, 0, 0, 0.3),
-        0.02em 0.05em 0.03em rgba(0, 0, 0, 0.3);
+			0 0.02em 0 #EEE, 
+			0 0.05em 0 #DDD, 
+			0.02em 0.04em 0.1em rgba(0, 0, 0, 0.3),
+			0.02em 0.05em 0.03em rgba(0, 0, 0, 0.3);
     }
     
     div#complex div {
@@ -31,22 +31,22 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-    $("span#span1").bigText();
+	$("span#span1").bigText();
     
     $("span#span2").bigText();
     
     $("span#span3").bigText({
         fontSizeFactor: 1
     });
-    
+	
     $("span#span4").bigText({
-        padding: 30
+		horizontalAlign: "left",
     });
-    
-    $("span#span5").bigText({
-        padding: 30
-    });
-    
+
+	$("span#span5").bigText({
+		verticalAlign: "bottom",
+	});
+
     $("span#span6").bigText({
         rotateText: 90
     });
@@ -54,11 +54,8 @@ $(document).ready(function() {
     $("span#span7").bigText({
         rotateText: -90
     });
-    
-    $("span#span8").bigText({
-        rotateText: 45,
-        padding: 30
-    });
+	
+    $("span#span8").bigText();
 	
     $("span#span9").bigText({
         maximumFontSize: 25
@@ -71,12 +68,18 @@ $(document).ready(function() {
 	$("span#span11").bigText({
 		limitingDimension: "height"
 	});
-    
+	
+	$("span#span12").bigText({
+		textAlign: "right"
+	});
+	
+	$("span#span13").bigText();
+	
     $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
     $("span#complex_span4").bigText({
-        rotateText: -45
+        rotateText: -45,
+		fontSizeFactor: 1
     });
-    
 });
 </script>
 </head>
@@ -119,7 +122,7 @@ $(document).ready(function() {
     div size: width: 800px; height: 100px; <br />
     Same as Example2 but with fontSizeFactor set to 1. fontSizeFactor default is 0.8, it's used to give some vertical spacing for letters that overflow the line-height (like 'g', 'Á' and most other accentuated uppercase letters). This does not affect the font-size if the limiting factor is the width of the parent div.
     <pre>
-        $("span#span2").bigText({
+        $("span#span3").bigText({
             fontSizeFactor: 1
         });
     </pre>
@@ -129,44 +132,41 @@ $(document).ready(function() {
     ">
         <span id="span3" class="test-span">Testing BigText</span>
     </div>
-
-
-
-    
-    <h2>Example4</h2>
-    div size: width: 300px; height: 200px; <br />
-    Add some padding to the parent div. You can also set this directly on the CSS of the parent div.
+	
+	
+	<h2>Example4</h2>
+    div size: width: 800px; height: 100px; <br />
+    Horizontal alignment
     <pre>
         $("span#span4").bigText({
-            padding: 30
+            horizontalAlign: "left",
         });
     </pre>
     <div class="test-div" style="
-        width: 300px;
-        height: 200px;
+        width: 800px;
+        height: 100px;
     ">
         <span id="span4" class="test-span">Testing BigText</span>
     </div>
-    
-    
-    <h2>Example5</h2>
-    div size: width: 500px; height: 100px; <br />
-    Add some padding to the parent div. But on this case the font size is limited vertically.
+	
+	
+	<h2>Example5</h2>
+    div size: width: 200px; height: 200px; <br />
+    Vertical Alignment
     <pre>
         $("span#span5").bigText({
-            padding: 30
+            verticalAlign: "bottom",
         });
     </pre>
     <div class="test-div" style="
-        width: 700px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
     ">
         <span id="span5" class="test-span">Testing BigText</span>
     </div>
-    
-    
-    
-    
+	
+	
+
     
     
     <h2>Example6</h2>
@@ -174,7 +174,7 @@ $(document).ready(function() {
     BigText on rotated text? yes please! <br />
     Note: BigText, unlike padding, does not support setting the rotation of the text element on CSS. You must set through the $.bigText() options.
     <pre>
-        $("span#span3").bigText({
+        $("span#span6").bigText({
             rotateText: 90
         });
     </pre>
@@ -186,15 +186,11 @@ $(document).ready(function() {
     </div>
     
     
-    
-    
-    
-    
     <h2>Example7</h2>
     div size: width: 100px; height: 300px; <br />
     More rotated examples.
     <pre>
-        $("span#span3").bigText({
+        $("span#span7").bigText({
             rotateText: -90
         });
     </pre>
@@ -204,32 +200,38 @@ $(document).ready(function() {
     ">
         <span id="span7" class="test-span">Testing BigText</span>
     </div>
-    
-    
-    
-    
-    
-    
+	
+	
     <h2>Example8</h2>
-    div size: width: 300px; height: 300px; <br />
-    More rotated examples.
+    div size: width: 300px; height: 150px; <br />
+    The element you call $().bigText() in can have other elements inside it. If you set the font-size in the em unit in these elements you can have bigger text followed by smaller text like below. Using this technique you can also have any kind of text, like <a href='http://fortawesome.github.io/Font-Awesome/'>font-awesome</a> icons.<br />
+	HTML:
+	<pre>
+		&lt;div&gt;
+			&lt;span id="span8"&gt;
+				&lt;i class="fa fa-home" style="font-size: 1.3em"&gt;&lt;/i&gt;
+				&lt;span style="font-size: 1.2em"&gt;Big&lt;/span&gt;
+				&lt;span style="font-size: 0.8em"&gt;small&lt;/span&gt;
+				&lt;i class="fa fa-home" style="font-size: 0.5em"&gt;&lt;/i&gt;
+			&lt;/span&gt;
+		&lt;/div&gt;
+	</pre>
+	Javascript:
     <pre>
-        $("span#span3").bigText({
-            rotateText: 45
-            padding: 30
-        });
+        $("span#span8").bigText();
     </pre>
     <div class="test-div" style="
         width: 300px;
-        height: 300px;
+        height: 150px;
     ">
-        <span id="span8" class="test-span">Testing BigText</span>
+		<span id="span8" class="test-span">
+			<i class="fa fa-home" style="font-size: 1.3em"></i>
+			<span style="font-size: 1.3em">Big</span>
+			<span style="font-size: 0.5em">small</span>
+			<i class="fa fa-home" style="font-size: 0.5em"></i>
+		</span>
     </div>
-    
-    
-    
-    
-    
+   
     
     <h2>Example9</h2>
     div size: width: 600px; height: 300px; <br />
@@ -263,9 +265,8 @@ $(document).ready(function() {
     </div>
     
 	
-	
     <h2>Example11</h2>
-    div size: width: auto; height: 200; <br />
+    div size: width: auto; height: 200px; <br />
     Limits the font size based only on the parent element height instead of both width and height.
     <pre>
 		$("span#span9").bigText({
@@ -277,10 +278,38 @@ $(document).ready(function() {
         height: 200px;
     ">
         <span id="span11" class="test-span">Testing BigText</span>
+    </div>	
+	
+	
+    <h2>Example12</h2>
+    div size: width: 200px; height: 100px; <br />
+    BigText also works with line breaks added manually. The default is to center the text on each line, but that can be changed using the textAlign property
+    <pre>
+		$("span#span12").bigText({
+			textAlign: "right"
+		});
+    </pre>
+    <div class="test-div" style="
+        width: 200px;
+        height: 100px;
+    ">
+		<span id="span12" class="test-span">Testing<br />Big<br />Text</span>
+    </div>	
+	
+	
+    <h2>Example13</h2>
+    div size: width: 200px; height: 80px; padding: 30px <br />
+    BigText understands padding on the enclosing div, so your text can have some breathing room without the need of multiple divs. In this example the enclosing div has a 30px padding added to it.
+    <pre>
+		$("span#span13").bigText();
+    </pre>
+    <div class="test-div" style="
+        width: 200px;
+        height: 80px;
+		padding: 30px;
+    ">
+		<span id="span13" class="test-span">Testing BigText</span>
     </div>
-    
-    
-    
     
     
     
@@ -289,7 +318,8 @@ $(document).ready(function() {
     <pre>
         $("span#complex_span1, span#complex_span2, span#complex_span3").bigText();
         $("span#complex_span4").bigText({
-            rotateText: -45
+            rotateText: -45,
+            fontSizeFactor: 1
         });
     </pre>
     <div id="complex" style="height: 450px; width: 300px;">
@@ -314,14 +344,14 @@ $(document).ready(function() {
             height: 100px;
             clear: right;
         ">
-            <span id="complex_span3" class="test-span">Is</span>
+            <span id="complex_span3" class="test-span">is</span>
         </div>
         <div style="
             background-color: yellow;
             width: 300px;
             height: 300px;
         ">
-            <span id="complex_span4" class="test-span">awesome</span>
+            <span id="complex_span4" class="test-span">AWESOME</span>
         </div>
     </div>
 </body>
