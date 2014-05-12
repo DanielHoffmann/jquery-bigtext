@@ -33,7 +33,7 @@ $("#span").bigText();
 
 With one simple line the text "BigText" will now have its font-size increased but without overflowing the div.
 
-See more examples in https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/examples/example.html
+See more examples in https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/examples/examples.html
 
 
 Usage
