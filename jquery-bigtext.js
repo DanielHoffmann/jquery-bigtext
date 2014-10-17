@@ -30,6 +30,8 @@ verticalAlign: Where to align the text vertically. Possible values: "top", "cent
 
 textAlign: Sets the text align of the element. Possible values: "left", "center", "right". Defaults to "center". This option is only useful if there are linebreaks (<br> tags) inside the text.
 
+whiteSpace: Sets whitespace handling. Possible values: "nowrap", "pre". Defaults to "nowrap". (Can also be set to enable wrapping but this doesn't work well.)
+
 Copyright (C) 2013 Daniel Hoffmann Bernardes, Ícaro Technologies
 
  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -49,7 +51,8 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Ícaro Technologies
         limitingDimension: "both",
         horizontalAlign: "center",
         verticalAlign: "center",
-        textAlign: "center"
+        textAlign: "center",
+        whiteSpace: "nowrap"
     };
     
     $.fn.bigText= function(options) {
@@ -67,7 +70,7 @@ Copyright (C) 2013 Daniel Hoffmann Bernardes, Ícaro Technologies
                 'float': "left", //the need to set this is very odd, its due to margin-collapsing. See https://developer.mozilla.org/en-US/docs/Web/CSS/margin_collapsing
                 'font-size': (1000 * options.fontSizeFactor) + "px",
                 'line-height': "1000px",
-                'white-space': "nowrap",
+                'white-space': options.whiteSpace,
                 "text-align": options.textAlign,
                 position: "relative",
                 padding: 0,
