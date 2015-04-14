@@ -31,16 +31,16 @@ Examples
 $("#span").bigText();
 ```
 
-With one simple line the text "BigText" will now have its font-size increased but without overflowing the div.
+With one simple line the text "BigText" will now have its font-size increased but without overflowing the element parent div.
 
-See more examples in https://rawgithub.com/DanielHoffmann/jquery-bigtext/master/examples/examples.html
+See more examples in http://danielhoffmann.github.io/jquery-bigtext/
 
 
 Usage
 ==============
 
 ```javascript
-$("#div").bigText({
+$("#span").bigText({
 	rotateText: {Number}, (null)
 	fontSizeFactor: {Number}, (0.8)
 	maximumFontSize: {Number}, (null)
