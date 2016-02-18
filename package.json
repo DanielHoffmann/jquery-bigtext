@@ -1,0 +1,24 @@
+{
+  "name": "jquery-bigtext",
+  "version": "1.3.0",
+  "description": "jQuery plugin that makes HTML text tags as big as possible while still fitting on the parent",
+  "main": "jquery-bigtext.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielHoffmann/jquery-bigtext.git"
+  },
+  "keywords": [
+    "jquery",
+    "bigtext",
+    "text"
+  ],
+  "author": "Daniel Hoffmann Bernardes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanielHoffmann/jquery-bigtext/issues"
+  },
+  "homepage": "https://github.com/DanielHoffmann/jquery-bigtext#readme"
+}
