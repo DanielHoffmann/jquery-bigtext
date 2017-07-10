@@ -1,5 +1,8 @@
 jquery-bigtext
 ==============
+
+This project is no longer mantained, please refer to https://github.com/BrOrlandi/big-text.js
+
 jQuery plugin that makes HTML text tags as big as possible while still fitting on the parent.
 
 Requirements
